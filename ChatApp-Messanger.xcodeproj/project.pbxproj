@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		092DE34F24AA2859001D366E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 092DE34E24AA2859001D366E /* GoogleService-Info.plist */; };
+		092DE36C24ACEDE9001D366E /* DataBaseManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092DE36B24ACEDE9001D366E /* DataBaseManeger.swift */; };
 		093DEBED24A228D700EF53FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093DEBEC24A228D700EF53FD /* AppDelegate.swift */; };
 		093DEBEF24A228D700EF53FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093DEBEE24A228D700EF53FD /* SceneDelegate.swift */; };
 		093DEBF124A228D700EF53FD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093DEBF024A228D700EF53FD /* ConversationViewController.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		092DE34E24AA2859001D366E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		092DE36B24ACEDE9001D366E /* DataBaseManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManeger.swift; sourceTree = "<group>"; };
 		093DEBE924A228D700EF53FD /* ChatApp-Messanger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChatApp-Messanger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		093DEBEC24A228D700EF53FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		093DEBEE24A228D700EF53FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				093DEBEC24A228D700EF53FD /* AppDelegate.swift */,
 				093DEBEE24A228D700EF53FD /* SceneDelegate.swift */,
 				09A3641B24A3E1A800E8BEB7 /* Extension.swift */,
+				092DE36B24ACEDE9001D366E /* DataBaseManeger.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09802AAB24A22FC700E20D3F /* LoginViewController.swift in Sources */,
+				092DE36C24ACEDE9001D366E /* DataBaseManeger.swift in Sources */,
 				09802AAD24A22FD500E20D3F /* RegisterViewController.swift in Sources */,
 				09802AB324A2301A00E20D3F /* NewConversationViewController.swift in Sources */,
 				093DEBF124A228D700EF53FD /* ConversationViewController.swift in Sources */,

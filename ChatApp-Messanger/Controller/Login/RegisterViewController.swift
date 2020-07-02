@@ -19,7 +19,7 @@ class RegisterViewController: UIViewController {
     }()
     private var imageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
+        imageView.image = UIImage(systemName: "person.circle")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         
@@ -124,7 +124,7 @@ class RegisterViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         
         let gesture = UITapGestureRecognizer(target: self,
-                                          action: #selector(didTappedChangeProfilePic))
+                                             action: #selector(didTappedChangeProfilePic))
         gesture.numberOfTapsRequired = 1
         gesture.numberOfTouchesRequired = 1
         imageView.addGestureRecognizer(gesture)
@@ -148,13 +148,13 @@ class RegisterViewController: UIViewController {
                                  height: size)
         imageView.layer.cornerRadius = imageView.width / 2.0
         firstNameFeild.frame = CGRect(x: 30,
-                                  y: imageView.bottom + 10,
-                                  width: scrollView.width-60,
-                                  height: 52)
+                                      y: imageView.bottom + 10,
+                                      width: scrollView.width-60,
+                                      height: 52)
         lastNameFeild.frame = CGRect(x: 30,
-                                  y: firstNameFeild.bottom + 10,
-                                  width: scrollView.width-60,
-                                  height: 52)
+                                     y: firstNameFeild.bottom + 10,
+                                     width: scrollView.width-60,
+                                     height: 52)
         emailField.frame = CGRect(x: 30,
                                   y: lastNameFeild.bottom + 10,
                                   width: scrollView.width-60,
@@ -164,9 +164,9 @@ class RegisterViewController: UIViewController {
                                      width: scrollView.width-60,
                                      height: 52)
         registerButton.frame = CGRect(x: 30,
-                                   y: passwordField.bottom + 10,
-                                   width: scrollView.width-60,
-                                   height: 52)
+                                      y: passwordField.bottom + 10,
+                                      width: scrollView.width-60,
+                                      height: 52)
     }
     @objc private func registerButtonTapped(){
         emailField.resignFirstResponder()
@@ -181,26 +181,39 @@ class RegisterViewController: UIViewController {
             !password.isEmpty,
             password.count >= 6
             else {
-            alertUserLoginError()
-            return
+                alertUserLoginError()
+                return
         }
         //firebase login
         
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
-            guard let result = authResult , error == nil else {
-                print("Error creating user")
+        DatabaseManeger.shared.userExits(with: email) { [weak self](exists) in
+            guard let strongSelf = self else { return }
+
+            guard !exists else {
+                //user already exists
+                strongSelf.alertUserLoginError(with: "User Already exists")
                 return
             }
-            let user = result.user
-            print("Created user \(user)")
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) {[weak self] (authResult, error) in
+                guard let strongSelf = self else { return }
+                guard let  _ =  authResult , error == nil else {
+                    print("Error creating user")
+                    return
+                }
+                DatabaseManeger.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
+                
+                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+            }
         }
+        
+        
     }
-
     
     
     
-    func alertUserLoginError(){
-        let alert = UIAlertController(title: "whoops", message: "Please enter the correct information", preferredStyle: .alert)
+    
+    func alertUserLoginError(with message: String = "Please enter the correct information"){
+        let alert = UIAlertController(title: "whoops", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
     }
     
